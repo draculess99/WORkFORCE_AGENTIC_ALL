@@ -1311,8 +1311,7 @@ if run_clicked:
                     "week"
                 ]
 
-                ai_summary = run_operational_crew(
-
+                ai_result = run_operational_crew(
                     result_df,
                     stress_band,
                     total_cost,
@@ -1321,8 +1320,9 @@ if run_clicked:
                     primary_risk_display,
                     vet_weeks,
                     vto_weeks
-
                 )
+                
+                ai_summary = ai_result.get("summary", str(ai_result))
 
         if "unavailable" in ai_summary.lower() or "busy" in ai_summary.lower():
             #ai_summary = get_groq_explanation(result_df, rec)
