@@ -1,6 +1,11 @@
 [build]
 builder = "NIXPACKS"
 
+[env]
+PIP_NO_CACHE_DIR = "1"
+STREAMLIT_SERVER_MAX_MESSAGE_SIZE = "50"
+MALLOC_ARENA_MAX = "2"
+
 [deploy]
 startCommand = "streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0"
 restartPolicyType = "ON_FAILURE"
