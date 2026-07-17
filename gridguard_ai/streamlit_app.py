@@ -38,6 +38,7 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+    [data-testid="stSidebarNav"] {display: none !important;}
     .block-container {padding-top: 3rem; padding-bottom: 2rem;}
     .gg-card {
         border: 1px solid rgba(128,128,128,.25);
