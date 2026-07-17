@@ -403,7 +403,7 @@ with tab_control:
         legend_orientation="h",
         margin=dict(l=20, r=20, t=60, b=20),
     )
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
 
     st.subheader("Operator decision")
     decision_col, note_col = st.columns([1, 2])
@@ -437,7 +437,7 @@ with tab_control:
             timestamp=lambda frame: frame["timestamp"].dt.strftime("%Y-%m-%d %H:%M"),
             forecast_mw=lambda frame: frame["forecast_mw"].round(0),
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
 
@@ -497,7 +497,7 @@ with tab_intelligence:
 
         with st.expander("Explainable expert-system trace", expanded=True):
             st.metric("Rule confidence", f"{result['expert']['confidence']:.0%}")
-            st.dataframe(pd.DataFrame(result["expert"]["rules_fired"]), width="stretch", hide_index=True)
+            st.dataframe(pd.DataFrame(result["expert"]["rules_fired"]), use_container_width=True, hide_index=True)
             st.warning(result["expert"]["guardrail"])
 
         with st.expander("Retrieved RAG sources"):
@@ -510,7 +510,7 @@ with tab_intelligence:
     with st.expander("JSON-backed decision memory"):
         memories = memory.list(limit=20)
         if memories:
-            st.dataframe(pd.DataFrame(memories), width="stretch", hide_index=True)
+            st.dataframe(pd.DataFrame(memories), use_container_width=True, hide_index=True)
         else:
             st.info("No decision-intelligence conversations have been stored.")
         if st.button("Clear decision memory"):
@@ -586,7 +586,7 @@ with tab_scenario:
     scenario_fig = go.Figure(go.Scatter(x=sf["timestamp"], y=sf["forecast_mw"], mode="lines+markers", name="Scenario forecast"))
     scenario_fig.add_hline(y=srisk["effective_capacity_mw"], line_dash="dash", line_color="#fbbf24", annotation_text="Effective capacity")
     scenario_fig.update_layout(height=400, yaxis_title="Demand (MW)", title="Scenario forecast")
-    st.plotly_chart(scenario_fig, width="stretch")
+    st.plotly_chart(scenario_fig, use_container_width=True)
     st.info(srisk["recommendation"])
 
 with tab_model:
@@ -605,7 +605,7 @@ with tab_model:
     imp = bundle.feature_importance.head(15).sort_values("importance")
     imp_fig = go.Figure(go.Bar(x=imp["importance"], y=imp["feature"], orientation="h"))
     imp_fig.update_layout(title="XGBoost feature importance (via SHAP)", height=480, xaxis_title="Mean Absolute SHAP Value")
-    st.plotly_chart(imp_fig, width="stretch")
+    st.plotly_chart(imp_fig, use_container_width=True)
     st.caption("Feature importance is extracted using SHAP (SHapley Additive exPlanations) values to show true predictive impact.")
 
     comparison = bundle.test_predictions.copy()
@@ -614,7 +614,7 @@ with tab_model:
     compare_fig.add_trace(go.Scatter(x=comparison["timestamp"], y=comparison["xgb_mw"], name="XGBoost"))
     compare_fig.add_trace(go.Scatter(x=comparison["timestamp"], y=comparison["naive_mw"], name="Seasonal naive"))
     compare_fig.update_layout(title="Chronological holdout performance (Backtesting)", height=430, yaxis_title="Demand (MW)")
-    st.plotly_chart(compare_fig, width="stretch")
+    st.plotly_chart(compare_fig, use_container_width=True)
     st.info("""
     **Understanding this Backtesting Graph:**
     This graph represents our strict **chronological backtesting** methodology. To prevent data leakage, the most recent 20% of the dataset was entirely hidden during the training phase. 
@@ -639,7 +639,7 @@ with tab_model:
         hoverinfo="text"
     ))
     corr_fig.update_layout(title="Top Features Correlation Heatmap", height=500)
-    st.plotly_chart(corr_fig, width="stretch")
+    st.plotly_chart(corr_fig, use_container_width=True)
     
     st.info("""
     **How to read the Correlation Heatmap:**
@@ -676,7 +676,7 @@ Human approval
     st.subheader("Token ledger")
     usage_snapshot = meter.snapshot()["providers"]
     usage_rows = [{"provider": provider, **counters} for provider, counters in usage_snapshot.items()]
-    st.dataframe(pd.DataFrame(usage_rows), width="stretch", hide_index=True)
+    st.dataframe(pd.DataFrame(usage_rows), use_container_width=True, hide_index=True)
     st.caption("These are tokens reported to this app by API responses. Resetting the meter does not reset provider quotas or billing.")
     if st.button("Reset all local token meters"):
         meter.reset()
@@ -686,7 +686,7 @@ Human approval
     st.subheader("Human decision records")
     records = store.list(limit=100)
     if records:
-        st.dataframe(pd.DataFrame(records), width="stretch", hide_index=True)
+        st.dataframe(pd.DataFrame(records), use_container_width=True, hide_index=True)
     else:
         st.info("No human decisions have been recorded yet.")
 
@@ -760,7 +760,7 @@ EIA hourly API ─────┘""",
         for key, value in data_profile.items()
         if key != "quality_counts"
     ]
-    st.dataframe(pd.DataFrame(profile_rows), width="stretch", hide_index=True)
+    st.dataframe(pd.DataFrame(profile_rows), use_container_width=True, hide_index=True)
 
     st.subheader("Canonical GridGuard schema")
     schema_purpose = {
@@ -776,12 +776,12 @@ EIA hourly API ─────┘""",
         pd.DataFrame(
             [{"column": column, "purpose": schema_purpose[column]} for column in CANONICAL_COLUMNS]
         ),
-        width="stretch",
+        use_container_width=True,
         hide_index=True,
     )
 
     st.subheader("Latest normalized observations")
-    st.dataframe(bundle.history.tail(100), width="stretch", hide_index=True)
+    st.dataframe(bundle.history.tail(100), use_container_width=True, hide_index=True)
     
     st.subheader("Export Data")
     csv_col1, csv_col2 = st.columns(2)
