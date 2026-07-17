@@ -410,8 +410,8 @@ with tab_control:
     with note_col:
         operator_note = st.text_area("Decision rationale", placeholder="Record the operational rationale, constraints, and responsible reviewer.")
     with decision_col:
-        approve = st.button("Approve recommendation", type="primary", width="stretch")
-        reject = st.button("Reject / hold", width="stretch")
+        approve = st.button("Approve recommendation", type="primary", use_container_width=True)
+        reject = st.button("Reject / hold", use_container_width=True)
 
     if approve or reject:
         status = "approved" if approve else "rejected"
