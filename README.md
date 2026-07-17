@@ -32,6 +32,18 @@ python app.py --headless    # do not auto-open the browser
 
 For Railway deployment, keep using the included `railway.toml` start command.
 
+## Multipage Suite
+
+The single Streamlit service now exposes five sidebar applications:
+
+1. Basic Warehouse Forecast Dashboard
+2. CrewAI Multi-Agent Workforce Planner
+3. LangGraph Labor Optimizer
+4. Autonomous VET/VTO Supervisor
+5. GridGuard AI Energy Demand & Grid Risk Control
+
+GridGuard is stored separately under `gridguard_ai/`, while `pages/05_GridGuard_AI.py` exposes it through the same Streamlit sidebar.
+
 
 A human-in-the-loop autonomous workforce planning system using XGBoost forecasting, agentic AI, guardrails, and a supervisor-led control layer to produce traceable VET/VTO staffing recommendations.
 
@@ -396,7 +408,9 @@ guardrails/             Input, staffing, and AI output guardrails
 memory/                 Operational memory logic
 rag_docs/               RAG reference material
 docs/                   Architecture notes and workflow trace documentation
-streamlit_app.py        Streamlit dashboard
+streamlit_app.py        Streamlit multipage suite landing page
+pages/                  Five Streamlit application pages
+gridguard_ai/           Isolated GridGuard AI code, data, RAG docs, and runtime storage
 flask_api.py            Forecast API backend
 crew_runner.py          Runs operational agentic workflow
 scenario_templates.tsv  Scenario rule engine data
@@ -411,14 +425,12 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-Start the Flask backend:
-```bash
-python flask_api.py
-```
-Start the Streamlit dashboard:
+Start the consolidated Streamlit multipage suite:
 ```bash
 streamlit run streamlit_app.py
 ```
+
+The retained `flask_api.py` is optional compatibility/reference code; Railway does not need a second service for the merged build.
 Optional environment variables:
 ```bash
 GEMINI_API_KEY

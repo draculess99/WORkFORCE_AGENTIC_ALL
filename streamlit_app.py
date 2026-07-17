@@ -7,10 +7,10 @@ st.set_page_config(
 )
 
 st.title("Workforce AI Suite")
-st.caption("One Railway service • one Streamlit multipage app • shared local forecast engine")
+st.caption("One Railway service • five Streamlit pages • isolated workforce and energy engines")
 
 st.markdown("""
-This merged prototype combines your four workforce apps into a single Streamlit project.
+This merged prototype combines four workforce apps plus GridGuard AI into a single Streamlit project.
 
 ### What changed
 - Each former app is now a separate page in the sidebar.
@@ -23,6 +23,7 @@ This merged prototype combines your four workforce apps into a single Streamlit 
 2. CrewAI Multi-Agent Workforce Planner
 3. LangGraph Labor Optimization
 4. Autonomous VET/VTO Supervisor
+5. GridGuard AI Energy Demand & Grid Risk Control
 
 ### Local run
 ```bash
@@ -44,5 +45,7 @@ Railway Service
     ├── Page 2: CrewAI planner
     ├── Page 3: LangGraph optimizer
     ├── Page 4: Autonomous supervisor
-    └── Shared backend/forecast_engine.py
+    ├── Page 5: GridGuard AI energy control
+    ├── Shared workforce backend/forecast_engine.py
+    └── Isolated gridguard_ai/gridguard_backend/
 """, language="text")
