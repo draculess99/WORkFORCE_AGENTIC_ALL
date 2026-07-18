@@ -7,10 +7,10 @@ st.set_page_config(
 )
 
 st.title("Workforce AI Suite")
-st.caption("One Railway service • five Streamlit pages • isolated workforce and energy engines")
+st.caption("One Railway service • six Streamlit pages • workforce, energy, and fulfillment digital-twin engines")
 
 st.markdown("""
-This merged prototype combines four workforce apps plus GridGuard AI into a single Streamlit project.
+This merged prototype combines four workforce apps, GridGuard AI, and FulfillTwin AI into a single Streamlit project.
 
 ### What changed
 - Each former app is now a separate page in the sidebar.
@@ -24,6 +24,7 @@ This merged prototype combines four workforce apps plus GridGuard AI into a sing
 3. LangGraph Labor Optimization
 4. Autonomous VET/VTO Supervisor
 5. GridGuard AI Energy Demand & Grid Risk Control
+6. FulfillTwin AI Human–Robot Fulfillment Digital Twin
 
 ### Local run
 ```bash
@@ -46,6 +47,8 @@ Railway Service
     ├── Page 3: LangGraph optimizer
     ├── Page 4: Autonomous supervisor
     ├── Page 5: GridGuard AI energy control
+    ├── Page 6: FulfillTwin AI digital twin + agent council
     ├── Shared workforce backend/forecast_engine.py
-    └── Isolated gridguard_ai/gridguard_backend/
+    ├── Isolated gridguard_ai/gridguard_backend/
+    └── Isolated fulfilltwin_ai/fulfilltwin/backend/
 """, language="text")

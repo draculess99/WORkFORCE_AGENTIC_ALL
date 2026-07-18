@@ -34,15 +34,16 @@ For Railway deployment, keep using the included `railway.toml` start command.
 
 ## Multipage Suite
 
-The single Streamlit service now exposes five sidebar applications:
+The single Streamlit service now exposes six sidebar applications:
 
 1. Basic Warehouse Forecast Dashboard
 2. CrewAI Multi-Agent Workforce Planner
 3. LangGraph Labor Optimizer
 4. Autonomous VET/VTO Supervisor
 5. GridGuard AI Energy Demand & Grid Risk Control
+6. FulfillTwin AI Human–Robot Fulfillment Digital Twin
 
-GridGuard is stored separately under `gridguard_ai/`, while `pages/05_GridGuard_AI.py` exposes it through the same Streamlit sidebar.
+GridGuard is stored separately under `gridguard_ai/`, while `pages/05_GridGuard_AI.py` exposes it through the same Streamlit sidebar. FulfillTwin is isolated under `fulfilltwin_ai/`, while `pages/06_FulfillTwin_AI.py` provides five internal sections: Control Tower, Scenario Lab, Agent Council, Knowledge Center, and Model Ops. FulfillTwin runs in-process, so Railway still starts only the one Streamlit service.
 
 
 A human-in-the-loop autonomous workforce planning system using XGBoost forecasting, agentic AI, guardrails, and a supervisor-led control layer to produce traceable VET/VTO staffing recommendations.

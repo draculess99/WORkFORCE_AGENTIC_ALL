@@ -1,0 +1,26 @@
+{
+  "training_rows": 3500,
+  "regression_mae": 507.36,
+  "regression_r2": 0.9639,
+  "classification_accuracy": 0.9325,
+  "classification_roc_auc": 0.9866,
+  "breach_rate": 0.594,
+  "features": [
+    "order_volume_pct",
+    "absenteeism_pct",
+    "conveyor_capacity_pct",
+    "dock_congestion_pct",
+    "energy_price_pct",
+    "inventory_availability_pct",
+    "current_backlog",
+    "workers",
+    "base_throughput",
+    "horizon_hours"
+  ],
+  "models": {
+    "backlog": "XGBoost Regressor",
+    "sla_risk": "XGBoost Classifier",
+    "anomaly": "Isolation Forest",
+    "operating_regime": "K-means (k=4)"
+  }
+}

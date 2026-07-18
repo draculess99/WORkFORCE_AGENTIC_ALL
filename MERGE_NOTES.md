@@ -1,6 +1,6 @@
 # Workforce AI Suite — Merge Notes
 
-This is a consolidated prototype made from four workforce apps plus the embedded GridGuard AI app.
+This is a consolidated prototype made from four workforce apps plus the embedded GridGuard AI and FulfillTwin AI apps.
 
 ## Included pages
 
@@ -9,6 +9,7 @@ This is a consolidated prototype made from four workforce apps plus the embedded
 - `pages/03_LangGraph_Labor_Optimizer.py` — LangGraph/RAG/labor optimization version.
 - `pages/04_Autonomous_VET_VTO_Supervisor.py` — autonomous supervisor version.
 - `pages/05_GridGuard_AI.py` — energy-demand forecasting, grid-risk simulation, RAG, persistence, and decision intelligence.
+- `pages/06_FulfillTwin_AI.py` — fulfillment digital twin with Control Tower, Scenario Lab, Agent Council, Knowledge Center, and Model Ops sections.
 
 ## Key consolidation change
 
@@ -52,3 +53,7 @@ streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0
 GridGuard remains available as its own directory at `gridguard_ai/`. Its original `backend/` package was renamed to `gridguard_ai/gridguard_backend/` and imports were namespaced to prevent collision with the workforce suite's `backend/` package. GridGuard data, RAG documents, and JSON runtime files remain under `gridguard_ai/`.
 
 The original GridGuard `.env` and nested `.git` directory were intentionally not copied. Put shared API keys in the suite root `.env` using `.env.example` as guidance.
+
+## FulfillTwin directory isolation
+
+FulfillTwin remains available under `fulfilltwin_ai/`. The suite page adds `fulfilltwin_ai/` to the Python module path and uses `fulfilltwin/local_client.py` to invoke the original ML, RAG, expert-system, optimizer, JSON memory, and multi-agent services directly. This avoids a second Flask process and port. The original FulfillTwin `.env`, `.git/`, caches, and compiled files were not copied.

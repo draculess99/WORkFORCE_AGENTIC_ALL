@@ -1,0 +1,13 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.streamlit/secrets.toml
+fulfilltwin/backend/artifacts/*.joblib
+!fulfilltwin/backend/artifacts/model_bundle.joblib
+fulfilltwin/backend/artifacts/metrics.json
+!fulfilltwin/backend/artifacts/metrics.json
+fulfilltwin/backend/storage/memory.json.tmp
+.DS_Store
